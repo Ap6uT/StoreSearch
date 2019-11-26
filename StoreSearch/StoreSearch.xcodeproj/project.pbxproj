@@ -8,22 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		D465125D238D5B12007DFAF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D465125C238D5B12007DFAF2 /* AppDelegate.swift */; };
-		D465125F238D5B12007DFAF2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D465125E238D5B12007DFAF2 /* SceneDelegate.swift */; };
-		D4651261238D5B12007DFAF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4651260238D5B12007DFAF2 /* ViewController.swift */; };
+		D4651261238D5B12007DFAF2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4651260238D5B12007DFAF2 /* SearchViewController.swift */; };
 		D4651264238D5B12007DFAF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4651262238D5B12007DFAF2 /* Main.storyboard */; };
 		D4651266238D5B14007DFAF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4651265238D5B14007DFAF2 /* Assets.xcassets */; };
 		D4651269238D5B14007DFAF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4651267238D5B14007DFAF2 /* LaunchScreen.storyboard */; };
+		D4651271238D72B7007DFAF2 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4651270238D72B7007DFAF2 /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D4651259238D5B12007DFAF2 /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D465125C238D5B12007DFAF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D465125E238D5B12007DFAF2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D4651260238D5B12007DFAF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D4651260238D5B12007DFAF2 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D4651263238D5B12007DFAF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D4651265238D5B14007DFAF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4651268238D5B14007DFAF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D465126A238D5B14007DFAF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4651270238D72B7007DFAF2 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				D465125C238D5B12007DFAF2 /* AppDelegate.swift */,
-				D465125E238D5B12007DFAF2 /* SceneDelegate.swift */,
-				D4651260238D5B12007DFAF2 /* ViewController.swift */,
+				D4651260238D5B12007DFAF2 /* SearchViewController.swift */,
+				D4651270238D72B7007DFAF2 /* SearchResult.swift */,
 				D4651262238D5B12007DFAF2 /* Main.storyboard */,
 				D4651265238D5B14007DFAF2 /* Assets.xcassets */,
 				D4651267238D5B14007DFAF2 /* LaunchScreen.storyboard */,
@@ -138,9 +138,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4651261238D5B12007DFAF2 /* ViewController.swift in Sources */,
+				D4651261238D5B12007DFAF2 /* SearchViewController.swift in Sources */,
+				D4651271238D72B7007DFAF2 /* SearchResult.swift in Sources */,
 				D465125D238D5B12007DFAF2 /* AppDelegate.swift in Sources */,
-				D465125F238D5B12007DFAF2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +216,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +270,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -292,7 +292,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlexanderGrishin.StoreSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -309,7 +309,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlexanderGrishin.StoreSearch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
