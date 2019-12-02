@@ -17,6 +17,7 @@
 		D4651266238D5B14007DFAF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4651265238D5B14007DFAF2 /* Assets.xcassets */; };
 		D4651269238D5B14007DFAF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4651267238D5B14007DFAF2 /* LaunchScreen.storyboard */; };
 		D4651271238D72B7007DFAF2 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4651270238D72B7007DFAF2 /* SearchResult.swift */; };
+		D4A92856239529AD008869EF /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A92855239529AD008869EF /* UIImageView+DownloadImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		D4651268238D5B14007DFAF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D465126A238D5B14007DFAF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4651270238D72B7007DFAF2 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		D4A92855239529AD008869EF /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				D4651262238D5B12007DFAF2 /* Main.storyboard */,
 				D4651270238D72B7007DFAF2 /* SearchResult.swift */,
 				D4651260238D5B12007DFAF2 /* SearchViewController.swift */,
+				D4A92855239529AD008869EF /* UIImageView+DownloadImage.swift */,
 				D4629FA0238EF9580004BC52 /* LoadingCell.xib */,
 				D46117BA238DB55B0005F80E /* NothingFoundCell.xib */,
 				D46117B8238DB3360005F80E /* SearchResultCell.swift */,
@@ -157,6 +160,7 @@
 				D4651271238D72B7007DFAF2 /* SearchResult.swift in Sources */,
 				D46117B9238DB3360005F80E /* SearchResultCell.swift in Sources */,
 				D465125D238D5B12007DFAF2 /* AppDelegate.swift in Sources */,
+				D4A92856239529AD008869EF /* UIImageView+DownloadImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
