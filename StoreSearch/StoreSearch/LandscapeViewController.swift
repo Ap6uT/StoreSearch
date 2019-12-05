@@ -126,7 +126,7 @@ class LandscapeViewController: UIViewController {
             // iPhone 11 Pro Max
             columnsPerPage = 9
             rowsPerPage = 3
-            itemWidth = 90
+            itemWidth = 89
             itemHeight = 99
             marginX = 2
             marginY = 29
@@ -143,12 +143,13 @@ class LandscapeViewController: UIViewController {
         var x = marginX
         for (index, result) in searchResults.enumerated() {
             let button = UIButton(type: .custom)
+            downloadImage(for: result, andPlaceOn: button)
+            button.setBackgroundImage(UIImage(named: "LandscapeButton"), for: .normal)
             button.backgroundColor = UIColor.white
-            button.setTitle("\(index)", for: .normal)
             button.tag = 2000 + index
             button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
             button.frame = CGRect(x: x + paddingHorz, y: marginY + CGFloat(row) * itemHeight + paddingVert, width: buttonWidth, height: buttonHeight)
-            downloadImage(for: result, andPlaceOn: button)
+            
             scrollView.addSubview(button)
             row += 1
             if row == rowsPerPage {
