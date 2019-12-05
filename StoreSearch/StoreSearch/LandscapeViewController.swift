@@ -13,7 +13,7 @@ class LandscapeViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    var searchResults = [SearchResult]()
+    var search: Search!
     private var downloads = [URLSessionDownloadTask]()
     
     private var firstTime = true
@@ -46,8 +46,22 @@ class LandscapeViewController: UIViewController {
         pageControl.frame = CGRect(x: safeFrame.origin.x, y: safeFrame.size.height - pageControl.frame.size.height, width: safeFrame.size.width, height: pageControl.frame.size.height)
         if firstTime {
             firstTime = false
-            tileButtons(searchResults)
+            switch search.state {
+            case .notSearchedYet:
+                break
+            case .noResults:
+                showNothingFoundLabel()
+            case .loading:
+                showSpinner()
+            case .results(let list):
+                tileButtons(list)
+            }
+            
         }
+    }
+    
+    @objc func buttonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "ShowDetail", sender: sender)
     }
     
     // MARK: - Actions
@@ -57,6 +71,20 @@ class LandscapeViewController: UIViewController {
         }, completion: nil)
         
     }
+    // MARK:- Public Methods
+    func searchResultsReceived() {
+        hideSpinner()
+        
+        switch search.state {
+        case .notSearchedYet, .loading:
+            break
+        case .noResults:
+        showNothingFoundLabel()
+        case .results(let list):
+            tileButtons(list)
+        }
+    }
+    
     
 
     // MARK: - Private Methods
@@ -69,7 +97,6 @@ class LandscapeViewController: UIViewController {
         var marginY: CGFloat = 20
         
         let viewWidth = scrollView.bounds.size.width
-        
         switch viewWidth {
         case 568:
             // 4-inch device
@@ -95,12 +122,12 @@ class LandscapeViewController: UIViewController {
             itemHeight = 98
             marginX = 2
             marginY = 29
-        case 1242:
+        case 808:
             // iPhone 11 Pro Max
-            columnsPerPage = 8
+            columnsPerPage = 9
             rowsPerPage = 3
             itemWidth = 90
-            itemHeight = 98
+            itemHeight = 99
             marginX = 2
             marginY = 29
         default:
@@ -118,6 +145,8 @@ class LandscapeViewController: UIViewController {
             let button = UIButton(type: .custom)
             button.backgroundColor = UIColor.white
             button.setTitle("\(index)", for: .normal)
+            button.tag = 2000 + index
+            button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
             button.frame = CGRect(x: x + paddingHorz, y: marginY + CGFloat(row) * itemHeight + paddingVert, width: buttonWidth, height: buttonHeight)
             downloadImage(for: result, andPlaceOn: button)
             scrollView.addSubview(button)
@@ -137,6 +166,23 @@ class LandscapeViewController: UIViewController {
         pageControl.currentPage = 0
     }
     
+    private func showNothingFoundLabel() {
+        let label = UILabel(frame: CGRect.zero)
+        label.text = "Nothing Found"
+        label.textColor = UIColor.white
+        label.backgroundColor = UIColor.clear
+        
+        label.sizeToFit()
+        
+        var rect = label.frame
+        rect.size.width = ceil(rect.size.width / 2) * 2
+        rect.size.height = ceil(rect.size.height / 2) * 2
+        label.frame = rect
+        
+        label.center = CGPoint(x: scrollView.bounds.midX, y: scrollView.bounds.midY)
+        view.addSubview(label)
+    }
+    
     private func downloadImage(for searchResult: SearchResult, andPlaceOn button: UIButton) {
         if let url = URL(string: searchResult.imageSmall) {
             let task = URLSession.shared.downloadTask(with: url) { [weak button] url, response, error in
@@ -150,6 +196,29 @@ class LandscapeViewController: UIViewController {
             }
             downloads.append(task)
             task.resume()
+        }
+    }
+    
+    private func showSpinner() {
+        let spinner = UIActivityIndicatorView(style: .whiteLarge)
+        spinner.center = CGPoint(x: scrollView.bounds.midX + 0.5, y: scrollView.bounds.midY + 0.5)
+        spinner.tag = 1000
+        view.addSubview(spinner)
+        spinner.startAnimating()
+    }
+    
+    private func hideSpinner() {
+        view.viewWithTag(1000)?.removeFromSuperview()
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            if case .results(let list) = search.state {
+                let detailViewController = segue.destination as! DetailViewController
+                let searchResult = list[(sender as! UIButton).tag - 2000]
+                detailViewController.searchResult = searchResult
+            }
         }
     }
     
