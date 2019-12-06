@@ -44,6 +44,7 @@
                 <constraints>
                     <constraint firstItem="6gy-xd-Scx" firstAttribute="centerX" secondItem="lWe-Hm-MLn" secondAttribute="centerX" id="9jZ-v3-IGM"/>
                     <constraint firstItem="6gy-xd-Scx" firstAttribute="centerY" secondItem="lWe-Hm-MLn" secondAttribute="centerY" id="f9S-Zt-qkS"/>
+                    <constraint firstItem="6gy-xd-Scx" firstAttribute="top" secondItem="lWe-Hm-MLn" secondAttribute="top" constant="30" id="gxv-3x-hBV"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="91" y="98"/>

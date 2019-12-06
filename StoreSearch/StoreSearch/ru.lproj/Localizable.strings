@@ -1,0 +1,57 @@
+/* 
+  Localizable.strings
+  StoreSearch
+
+  Created by Alexander Grishin on 06.12.2019.
+  Copyright © 2019 Alexander Grishin. All rights reserved.
+*/
+
+
+/* Localized kind: Album */
+"Album" = "Альбом";
+
+/* Localized kind: Software */
+"App" = "Приложение";
+
+/* Localized kind: Audio Book */
+"Audio Book" = "Аудиокнига";
+
+/* Localized kind: Book */
+"Book" = "Книга";
+
+/* Localized kind: E-Book */
+"E-Book" = "Электронная книга";
+
+/* Localized kind: Feature Movie
+   Localized kind: Movie */
+"Movie" = "Фильм";
+
+/* Localized kind: Music Video */
+"Music Video" = "Клип";
+
+/* Show Nothing Found Label: Nothing Found */
+"Nothing Found" = "Ничего не найдено";
+
+/* Localized kind: Podcast */
+"Podcast" = "Подкаст";
+
+/* split view master button */
+"Search" = "Поиск";
+
+/* Localized kind: Song */
+"Song" = "Песня";
+
+/* Email subject */
+"Support Request" = "Обратная связь";
+
+/* Error alert: message */
+"There was an error reading from the iTunes Store. Please try again." = "Возникла ошибка доступа к iTunes Store. Пожалуйста повторите попытку позже";
+
+/* Localized kind: TV Episode */
+"TV Episode" = "Эпизод сериала";
+
+/* Artist Name Label: Unknown */
+"Unknown" = "Неизвестно";
+
+/* Error alert: title */
+"Whoops..." = "Ой...";

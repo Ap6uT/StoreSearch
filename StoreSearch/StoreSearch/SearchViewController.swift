@@ -61,7 +61,7 @@ class SearchViewController: UIViewController {
     
 
     func showNetworkingError() {
-        let alert = UIAlertController(title: "Whoops...", message: "There was an error accesing to iTunes Store." + "Please try again", preferredStyle: .alert)
+        let alert = UIAlertController(title: NSLocalizedString("Whoops...", comment: "Error alert: title"), message: NSLocalizedString("There was an error reading from the iTunes Store. Please try again.", comment: "Error alert: message"), preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
@@ -151,7 +151,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case .loading:
             return 1
         case .noResults:
-            return 0
+            return 1
         case .results(let list):
             return list.count
         }
