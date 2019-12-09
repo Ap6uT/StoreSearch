@@ -25,12 +25,15 @@ class SearchViewController: UIViewController {
     private let search = Search()
     
     var landscapeVC: LandscapeViewController?
+    weak var splitViewDetail: DetailViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.searchTextField.backgroundColor = UIColor.white
         
-        searchBar.becomeFirstResponder()
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            searchBar.becomeFirstResponder()
+        }
         var cellNib = UINib(nibName: TableView.CellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.searchResultCell)
         
@@ -39,16 +42,26 @@ class SearchViewController: UIViewController {
         
         cellNib = UINib(nibName: TableView.CellIdentifiers.loadingCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.loadingCell)
+        
+        title = NSLocalizedString("Search", comment: "split view master button")
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
         
-        switch newCollection.verticalSizeClass {
-        case .compact:
-            showLandscape(with: coordinator)
-        case .regular, .unspecified:
-            hideLandscape(with: coordinator)
+        let rect = UIScreen.main.bounds
+        if (rect.width == 736 && rect.height == 414) ||
+            (rect.width == 414 && rect.height == 736) {
+            if presentedViewController != nil {
+                dismiss(animated: true, completion: nil)
+            }
+        } else if UIDevice.current.userInterfaceIdiom != .pad {
+            switch newCollection.verticalSizeClass {
+            case .compact:
+                showLandscape(with: coordinator)
+            case .regular, .unspecified:
+                hideLandscape(with: coordinator)
+            }
         }
     }
     
@@ -105,6 +118,14 @@ class SearchViewController: UIViewController {
         }
     }
     
+    private func hideMasterPane() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.splitViewController!.preferredDisplayMode = .primaryHidden
+        }, completion: { _ in
+            self.splitViewController!.preferredDisplayMode = .automatic
+        })
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDetail" {
@@ -112,6 +133,7 @@ class SearchViewController: UIViewController {
                 let detailViewController = segue.destination as! DetailViewController
                 let indexPath = sender as! IndexPath
                 let searchResult = list[indexPath.row]
+                detailViewController.isPopup = true
                 detailViewController.searchResult = searchResult
             }
         }
@@ -119,6 +141,7 @@ class SearchViewController: UIViewController {
 
 }
 
+// MARK:- Extension - Search Bar Delegate
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         performSearch()
@@ -143,6 +166,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
+// MARK:- Extension - Table View Delegate and Data Source
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch search.state {
@@ -180,8 +204,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+        searchBar.resignFirstResponder()
+        if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
+            tableView.deselectRow(at: indexPath, animated: true)
+            performSegue(withIdentifier: "ShowDetail", sender: indexPath)
+        } else {
+            if case .results(let list) = search.state {
+                if splitViewController!.displayMode != .allVisible {
+                    hideMasterPane()
+                }
+                splitViewDetail?.searchResult = list[indexPath.row]
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
